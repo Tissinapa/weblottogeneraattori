@@ -3,16 +3,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Pelattavia pelejä ovat lotto, vikinglotto ja eurojackpot</h1>
+<h1>Valitse pelattava peli</h1>
 
 <div id="gameButtons">
-    <form asp-action="NumberSelection" method="post">
-        <button type="submit" name="gameName" value="Lotto" class="game-button">Lotto</button>
-        <button type="submit" name="gameName" value="Vikinglotto" class="game-button">Vikinglotto</button>
-        <button type="submit" name="gameName" value="Eurojackpot" class="game-button">Eurojackpot</button>
-    </form>
+    <a asp-controller="Games" asp-action="Lotto" class="game-button">Lotto</a>
+    <a asp-controller="Games" asp-action="VikingLotto" class="game-button">VikingLotto</a>
+    <a asp-controller="Games" asp-action="EuroJackpot" class="game-button">EuroJackpot</a>
 </div>
 
-<style>
 
-</style>

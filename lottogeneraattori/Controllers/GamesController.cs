@@ -11,7 +11,7 @@ namespace lottogeneraattori.Controllers
 
     public class GamesController : Controller
     {
-        private LottoDbContext _context;
+        private readonly LottoDbContext _context;
 
         public GamesController(LottoDbContext context)
         {
@@ -23,15 +23,18 @@ namespace lottogeneraattori.Controllers
 
             return View();
         }
+        [Route("Games/Lotto")]
         public IActionResult Lotto()
         {
             return View();
         }
+        [Route("Games/VikingLotto")]
         public IActionResult VikingLotto()
         {
             return View();
         }
-        public IActionResult EuroJackpot()
+        [Route("Games/Eurojackpot")]
+        public IActionResult Eurojackpot()
         {
             return View();
         }
