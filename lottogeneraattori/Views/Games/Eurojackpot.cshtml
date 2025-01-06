@@ -2,7 +2,17 @@
     ViewData["Title"] = "Eurojackpot";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Eurojackpot generaattori</h1>
+<form asp-action="Play" method="post" id="lotteryForm">
 
-</div>
+    <h3>Select Your Numbers</h3>
+    <div id="numberGrid">
+        @for (int i = 1; i <= 50; i++)
+        {
+            <button type="button" class="number-button" data-value="@i">@i</button>
+        }
+    </div>
+
+    <input type="hidden" name="userNumbers" id="userNumbers" />
+    <p id="selectedNumbers"></p>
+    <button type="submit">Play</button>
+</form>
