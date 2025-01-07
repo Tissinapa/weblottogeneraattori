@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "Lotto";
+    int maxNumbers = 7;
 }
 
 <form asp-action="Play" method="post" id="lotteryForm">
@@ -17,3 +18,28 @@
     <p id="selectedNumbers"></p>
     <button type="submit">Play</button>
 </form>
+@section Scripts {
+    <script>
+        const maxSelection = @maxNumbers;
+        const selectedNumbers = new Set();
+
+        document.querySelectorAll('.number-button').forEach(button => {
+            button.addEventListener('click', function () {
+                const number = parseInt(this.dataset.value);
+
+                if (selectedNumbers.has(number)) {
+                    selectedNumbers.delete(number);
+                    this.classList.remove('selected');
+                } else if (selectedNumbers.size < maxSelection) {
+                    selectedNumbers.add(number);
+                    this.classList.add('selected');
+                }
+
+   
+                document.getElementById('userNumbers').value = Array.from(selectedNumbers).join(',');
+                document.getElementById('selectedNumbers').innerText = 
+                    `Selected Numbers: ${Array.from(selectedNumbers).join(', ')}`;
+            });
+        });
+    </script>
+}

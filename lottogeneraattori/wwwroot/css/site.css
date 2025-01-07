@@ -41,3 +41,29 @@ body {
     .game-button:hover {
         background-color: #45a049;
     }
+#numberGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 10 columns */
+    gap: 5px; /* Space between buttons */
+    max-width: 500px; /* Optional: Adjust the grid width */
+    margin: auto; /* Center the grid */
+}
+
+.number-button {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .number-button:hover {
+        background-color: #ddd;
+    }
+
+    .number-button.selected {
+        background-color: #FFDF00; /* Highlight selected buttons */
+    }
