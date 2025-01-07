@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "Lotto";
+    ViewBag.ErrorMessage = "Valitse 7 numeroa";
     int maxNumbers = 7;
 }
 
@@ -33,12 +34,14 @@
                 } else if (selectedNumbers.size < maxSelection) {
                     selectedNumbers.add(number);
                     this.classList.add('selected');
+                } else if (selectedNumbers.size === maxSelection) {
+                    alert('Valitse 7 numeroa');
                 }
 
    
                 document.getElementById('userNumbers').value = Array.from(selectedNumbers).join(',');
                 document.getElementById('selectedNumbers').innerText = 
-                    `Selected Numbers: ${Array.from(selectedNumbers).join(', ')}`;
+                    `Selected Numbers: ${Array.from(selectedNumbers).sort().join(', ')}`;
             });
         });
     </script>
