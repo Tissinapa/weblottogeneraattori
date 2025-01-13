@@ -7,13 +7,14 @@ namespace lottogeneraattori.Models
     {
 
         [Key]
-        public int GameId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int game_id { get; set; }
         [Required]
-        public string gameName { get; set; }
+        public string game_name { get; set; }
         [Required]
         [Column(TypeName = "integer[]")]
-        public int[] Numbers { get; set; } = new int[7];
+        public int[] numbers { get; set; } = new int[7];
 
-        public int PlayedGames { get; set; }
+        public int playedgames { get; set; }
     }
 }

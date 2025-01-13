@@ -10,6 +10,11 @@ namespace lottogeneraattori.Data
         {
         }
 
-        public DbSet<Lotterytickets> Games { get; set; }
+        public DbSet<Lotterytickets> Lottopelit { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Lotterytickets>().ToTable("games");
+        }
     }
 }

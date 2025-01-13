@@ -3,7 +3,8 @@
     int maxNumbers = 6;
 }
 
-<form asp-action="Play" method="post" id="lotteryForm">
+
+<form asp-action="PlayVikingLotto" asp-controller="Games" method="post" id="lotteryForm">
 
     <h3>Select Your Numbers</h3>
     <div id="numberGrid">
@@ -32,9 +33,9 @@
                 } else if (selectedNumbers.size < maxSelection) {
                     selectedNumbers.add(number);
                     this.classList.add('selected');
+                } else if (selectedNumbers.size === maxSelection) {
+                    alert('Valitse 6 numeroa');
                 }
-
-
                 document.getElementById('userNumbers').value = Array.from(selectedNumbers).join(',');
                 document.getElementById('selectedNumbers').innerText =
                     `Selected Numbers: ${Array.from(selectedNumbers).join(', ')}`;

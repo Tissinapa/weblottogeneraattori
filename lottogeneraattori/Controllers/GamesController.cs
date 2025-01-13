@@ -44,18 +44,36 @@ namespace lottogeneraattori.Controllers
 
         }
         [HttpPost]
-        public IActionResult PlayLotto(int[] userNumbers)
+        public async Task<IActionResult> PlayLotto(string userNumbers)
         {
-            if (userNumbers.Length != 7)
+            var userSelectedNumbers = userNumbers.Split(",").Select(int.Parse).ToArray();
+
+            if (userSelectedNumbers.Length != 7)
             {
                 ViewBag.ErrorMessage = "You must select 7 numbers";
                 return View("Lotto");
             }
 
+            // Generate winning numbers
             var winnigNumbers = GenerateNumbers(7, 1, 30);
-            
+            bool isWinner = userSelectedNumbers.OrderBy(x => x).SequenceEqual(winnigNumbers.OrderBy(x => x));
+            int correctNumbers = userSelectedNumbers.Intersect(winnigNumbers).Count();
 
-            return View();
+            var lotteryTicket = new Lotterytickets
+            {
+                game_id = 0,
+                game_name = "Lotto",
+                numbers = userSelectedNumbers,
+                playedgames = 1
+            };
+
+            _context.Lottopelit.Add(lotteryTicket);
+            await _context.SaveChangesAsync();
+
+            ViewBag.WinningNumbers = winnigNumbers;
+            ViewBag.UserNumbers = userSelectedNumbers;
+            ViewBag.CorrectNumbers = correctNumbers;
+            return View("Results");
         }
 
         [Route("Games/VikingLotto")]
@@ -65,10 +83,36 @@ namespace lottogeneraattori.Controllers
 
         }
         [HttpPost]
-        public IActionResult PlayVikingLotto()
+        public async Task<IActionResult> PlayVikingLotto(string userNumbers)
         {
-            return View();
+            var userSelectedNumbers = userNumbers.Split(",").Select(int.Parse).ToArray();
 
+            if (userSelectedNumbers.Length != 6)
+            {
+                ViewBag.ErrorMessage = "You must select 6 numbers";
+                return View("VikingLotto");
+            }
+
+            // Generate winning numbers
+            var winnigNumbers = GenerateNumbers(6, 1, 48);
+            bool isWinner = userSelectedNumbers.OrderBy(x => x).SequenceEqual(winnigNumbers.OrderBy(x => x));
+            int correctNumbers = userSelectedNumbers.Intersect(winnigNumbers).Count();
+
+            var lotteryTicket = new Lotterytickets
+            {
+                game_id = 0,
+                game_name = "VikingLotto",
+                numbers = userSelectedNumbers,
+                playedgames = 1
+            };
+
+            _context.Lottopelit.Add(lotteryTicket);
+            await _context.SaveChangesAsync();
+
+            ViewBag.WinningNumbers = winnigNumbers;
+            ViewBag.UserNumbers = userSelectedNumbers;
+            ViewBag.CorrectNumbers = correctNumbers;
+            return View("Results");
         }
 
         public IActionResult PlayEurojackpot()
