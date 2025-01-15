@@ -3,7 +3,7 @@
     int maxNumbers = 5;
 }
 
-<form asp-action="Play" method="post" id="lotteryForm">
+<form asp-action="PlayEurojackpot" asp-controller="Games" method="post" id="lotteryForm">
 
     <h3>Select Your Numbers</h3>
     <div id="numberGrid">
@@ -32,6 +32,8 @@
                 } else if (selectedNumbers.size < maxSelection) {
                     selectedNumbers.add(number);
                     this.classList.add('selected');
+                } else if(selectedNumbers.size === maxSelection) {
+                    alert('Valitse 5 numeroa');
                 }
 
 

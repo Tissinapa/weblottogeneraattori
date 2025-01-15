@@ -114,16 +114,46 @@ namespace lottogeneraattori.Controllers
             ViewBag.CorrectNumbers = correctNumbers;
             return View("Results");
         }
-
-        public IActionResult PlayEurojackpot()
-        {
-            return View();
-        }
-
         [Route("Games/Eurojackpot")]
         public IActionResult Eurojackpot()
         {
+
             return View();
         }
+
+
+        public async Task<IActionResult> PlayEurojackpot(string userNumbers)
+        {
+            var userSelectedNumbers = userNumbers.Split(",").Select(int.Parse).ToArray();
+
+            if (userSelectedNumbers.Length != 5)
+            {
+                ViewBag.ErrorMessage = "You must select 5 numbers";
+                return View("Eurojackpot");
+            }
+
+            // Generate winning numbers
+            var winnigNumbers = GenerateNumbers(5, 1, 50);
+            bool isWinner = userSelectedNumbers.OrderBy(x => x).SequenceEqual(winnigNumbers.OrderBy(x => x));
+            int correctNumbers = userSelectedNumbers.Intersect(winnigNumbers).Count();
+
+            var lotteryTicket = new Lotterytickets
+            {
+                game_id = 0,
+                game_name = "Eurojackpot",
+                numbers = userSelectedNumbers,
+                playedgames = 1
+            };
+
+            _context.Lottopelit.Add(lotteryTicket);
+            await _context.SaveChangesAsync();
+
+            ViewBag.WinningNumbers = winnigNumbers;
+            ViewBag.UserNumbers = userSelectedNumbers;
+            ViewBag.CorrectNumbers = correctNumbers;
+            return View("Results");
+
+        }
+       
     }
 }
