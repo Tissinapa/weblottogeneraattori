@@ -75,6 +75,7 @@ namespace lottogeneraattori.Controllers
             ViewBag.CorrectNumbers = correctNumbers;
             return View("Results");
         }
+        
 
         [Route("Games/VikingLotto")]
         public IActionResult VikingLotto()
