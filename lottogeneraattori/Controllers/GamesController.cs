@@ -73,7 +73,7 @@ namespace lottogeneraattori.Controllers
                 game_id = 0,
                 game_name = "Lotto",
                 numbers = userSelectedNumbers,
-                playedgames = 1
+                playedgames = 1 // This is really stupid nobody cares about this data
             };
 
             _context.Lottopelit.Add(lotteryTicket);
@@ -113,7 +113,7 @@ namespace lottogeneraattori.Controllers
                 game_id = 0,
                 game_name = "VikingLotto",
                 numbers = userSelectedNumbers,
-                playedgames = 1
+                playedgames = 1 // This is really stupid nobody cares about this data
             };
 
             _context.Lottopelit.Add(lotteryTicket);
@@ -152,7 +152,7 @@ namespace lottogeneraattori.Controllers
                 game_id = 0,
                 game_name = "Eurojackpot",
                 numbers = userSelectedNumbers,
-                playedgames = 1
+                playedgames = 1 // This is really stupid nobody cares about this data
             };
 
             _context.Lottopelit.Add(lotteryTicket);

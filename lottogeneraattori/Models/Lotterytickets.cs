@@ -15,6 +15,6 @@ namespace lottogeneraattori.Models
         [Column(TypeName = "integer[]")]
         public int[] numbers { get; set; } = new int[7];
 
-        public int playedgames { get; set; }
+        public int playedgames { get; set; } // This is really stupid nobody cares about this data
     }
 }
