@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 
+
 namespace lottogeneraattori.Controllers
 {
     
@@ -39,6 +40,8 @@ namespace lottogeneraattori.Controllers
         [Route("Games/Lotto")]
         public IActionResult Lotto()
         {
+            
+           
             return View();
 
 
@@ -47,6 +50,12 @@ namespace lottogeneraattori.Controllers
         public async Task<IActionResult> PlayLotto(string userNumbers)
         {
             var userSelectedNumbers = userNumbers.Split(",").Select(int.Parse).ToArray();
+
+            if(string.IsNullOrEmpty(userNumbers))
+            {
+                ViewBag.ErrorMessage = "Et antanut yhtään numeroa";
+                return View("Lotto");
+            }
 
             if (userSelectedNumbers.Length != 7)
             {

@@ -2,10 +2,10 @@
     ViewData["Title"] = "Eurojackpot";
     int maxNumbers = 5;
 }
-
+<img src="~/eurojackpot.jpg" alt="Eurojackpot" class="lotto-image"/>
 <form asp-action="PlayEurojackpot" asp-controller="Games" method="post" id="lotteryForm">
 
-    <h3>Select Your Numbers</h3>
+    <h3 class="text-center">Valitse numerot</h3>
     <div id="numberGrid">
         @for (int i = 1; i <= 50; i++)
         {
@@ -15,7 +15,7 @@
 
     <input type="hidden" name="userNumbers" id="userNumbers" />
     <p id="selectedNumbers"></p>
-    <button type="submit">Play</button>
+    <button type="submit" class="play-button">Pelaa</button>
 </form>
 @section Scripts {
     <script>
